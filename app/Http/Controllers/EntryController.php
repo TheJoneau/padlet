@@ -27,11 +27,10 @@ class EntryController extends Controller
         return $padlet != null ? response()->json($padlet, 200) : response()->json(null, 200);
     }
 
-    public function getEntriesOfPadlet() : JsonResponse {
-        $padlets = Entry::with(['creator'])->get();
-        //where padlet id
-        //get roles einfach mit get
-        return response()->json($padlets, 200);
+    //get Entry with certain id with padlet
+    public function getEntriesOfPadlet(string $id) : JsonResponse {
+        $entries = Entry::where('id', $id)->with(['padlet'])->first();
+        return $entries != null ? response()->json($entries, 200) : response()->json(null, 200);
     }
 
     //delets entry with certain id
