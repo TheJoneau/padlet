@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\EntryController;
 use App\Http\Controllers\PadletController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,18 +24,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/padlets', [PadletController::class,'index']);
+//public
 Route::get('/padlets/{id}', [PadletController::class,'findById']);
 
-Route::post('padlet', [PadletController::class,'save']);
-Route::put('padlet/{id}', [PadletController::class,'update']);
-Route::delete('padlet/{id}', [PadletController::class,'delete']);
-Route::get('/padlet/{id}/entry', [EntryController::class,'getEntriesOfPadlet']);
-
+Route::post('padlets', [PadletController::class,'save']);
+Route::put('padlets/{id}', [PadletController::class,'update']);
+Route::delete('padlets/{id}', [PadletController::class,'delete']);
 
 Route::get('/entries', [EntryController::class,'index']);
 Route::get('/entries/{id}', [EntryController::class,'findById']);
 
+Route::post('entries', [EntryController::class,'save']);
+Route::put('entries/{id}', [EntryController::class,'update']);
+Route::delete('entries/{id}', [EntryController::class,'delete']);
 
-Route::post('entry', [EntryController::class,'save']);
-Route::put('entry/{id}', [EntryController::class,'update']);
-Route::delete('entry/{id}', [EntryController::class,'delete']);
+Route::get('/roles', [RoleController::class,'index']);
+
+Route::get('/users', [UserController::class,'index']);

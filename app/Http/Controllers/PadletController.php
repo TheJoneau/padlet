@@ -53,7 +53,7 @@ class PadletController extends Controller
 
     //get padlet with certain id
     public function findById(string $id) : JsonResponse{
-        $padlet = Padlet::where('id', $id)->with(['creator'])->first();
+        $padlet = Padlet::where('id', $id)->with(['creator', 'entries'])->first();
         return $padlet != null ? response()->json($padlet, 200) : response()->json(null, 200);
     }
 
