@@ -35,9 +35,9 @@ class PadletController extends Controller
         }
 
         catch(\Exception $e){
-                DB::rollBack();
-                return response()->json("saving padlet failed: ". $e->getMessage(), 420);
-            }
+            DB::rollBack();
+            return response()->json("saving padlet failed: ". $e->getMessage(), 420);
+        }
     }
 
     //upadtes existing padlet with certain id
@@ -56,6 +56,13 @@ class PadletController extends Controller
         $padlet = Padlet::where('id', $id)->with(['creator', 'entries'])->first();
         return $padlet != null ? response()->json($padlet, 200) : response()->json(null, 200);
     }
+
+    //get all public padlets
+    public function getPublic() : JsonResponse{
+        $padlet = Padlet::where('is_public' == true)->with(['creator', 'entries'])->first();
+        return $padlet != null ? response()->json($padlet, 200) : response()->json(null, 200);
+    }
+
 
     //delets padlet with certain id
     public function delete(string $id) : JsonResponse {
