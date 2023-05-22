@@ -59,7 +59,7 @@ class PadletController extends Controller
 
     //get all public padlets
     public function getPublic() : JsonResponse{
-        $padlet = Padlet::where('is_public' == true)->with(['creator', 'entries'])->first();
+        $padlet = Padlet::where('is_public', '=', true)->with(['creator', 'entries'])->get();
         return $padlet != null ? response()->json($padlet, 200) : response()->json(null, 200);
     }
 

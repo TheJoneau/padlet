@@ -18,6 +18,15 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
+            'firstname' => 'Max',
+            'lastname' => 'Musterman',
+            'email' => 'max@gmail.com',
+            'password' => bcrypt('secret'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
+        ]);
+
+        DB::table('users')->insert([
             'firstname' => Str::random(10),
             'lastname' => Str::random(10),
             'email' => Str::random(10).'@gmail.com',
