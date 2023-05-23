@@ -25,19 +25,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('auth/login', [AuthController::class,'login']);
 
-
-Route::get('/padlets', [PadletController::class,'index']);
 Route::get('/padlets/public', [PadletController::class,'getPublic']);
-Route::get('/padlets/{id}', [PadletController::class,'findById']);
 
-Route::get('/entries', [EntryController::class,'index']);
-Route::get('/entries/{id}', [EntryController::class,'findById']);
-
-Route::get('/roles', [RoleController::class,'index']);
-
-Route::get('/users', [UserController::class,'index']);
 
 Route::group(['middleware' => ['api','auth.jwt', 'auth.admin']], function(){
+    Route::get('/padlets', [PadletController::class,'index']);
+
+    Route::get('/padlets/{id}', [PadletController::class,'findById']);
+
+    Route::get('/entries', [EntryController::class,'index']);
+    Route::get('/entries/{id}', [EntryController::class,'findById']);
+
+    Route::get('/roles', [RoleController::class,'index']);
+
+    Route::get('/users', [UserController::class,'index']);
+
+
     Route::post('padlets', [PadletController::class,'save']);
     Route::put('padlets/{id}', [PadletController::class,'update']);
     Route::delete('padlets/{id}', [PadletController::class,'delete']);
