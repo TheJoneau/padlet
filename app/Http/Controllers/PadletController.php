@@ -11,8 +11,27 @@ use Illuminate\Support\Facades\DB;
 class PadletController extends Controller
 {
     //get all padlets
-    public function index() : JsonResponse {
-        $padlets = Padlet::with(['creator', 'users', 'entries'])->get();
+    public function index(Request $request) : JsonResponse {
+        // get token from Authorization header
+        $token = $request->bearerToken();
+
+        // split token parts by .
+        $jwtParts = explode('.', $token);
+
+        // base64 decode payload part of token
+        $payloadBaseDecoded = base64_decode($jwtParts[1]);
+
+        // json_decode payload part of token
+        $payloadJsonDecoded = json_decode($payloadBaseDecoded);
+
+        // access user id in payload
+        $userId = $payloadJsonDecoded->user->id;
+
+        $padlets = Padlet::with(['entries', 'creator', 'users'])
+            ->where('creator_id', '=', $userId)
+            ->orWhere('is_public', '=', true)
+            ->get();
+
         return response()->json($padlets, 200);
     }
 
