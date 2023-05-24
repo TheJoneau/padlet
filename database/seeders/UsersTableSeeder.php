@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             'firstname' => 'Max',
-            'lastname' => 'Musterman',
+            'lastname' => 'Mustermann',
             'email' => 'max@gmail.com',
             'password' => bcrypt('secret'),
             'created_at' => date("Y-m-d H:i:s"),
@@ -27,19 +27,46 @@ class UsersTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'firstname' => Str::random(10),
-            'lastname' => Str::random(10),
-            'email' => Str::random(10).'@gmail.com',
-            'password' => bcrypt('password'),
+            'firstname' => 'Marie',
+            'lastname' => 'Müller',
+            'email' => 'marie@gmail.com',
+            'password' => bcrypt('password1'),
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
 
         DB::table('users')->insert([
-            'firstname' => Str::random(10),
-            'lastname' => Str::random(10),
-            'email' => Str::random(10).'@gmail.com',
-            'password' => bcrypt('password'),
+            'firstname' => 'Tom',
+            'lastname' => 'Reiter',
+            'email' => 'tom@gmail.com',
+            'password' => bcrypt('password2'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
+        ]);
+
+        DB::table('users')->insert([
+            'firstname' => 'Lukas',
+            'lastname' => 'Reiter',
+            'email' => 'lukas@gmail.com',
+            'password' => bcrypt('password3'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
+        ]);
+
+        DB::table('users')->insert([
+            'firstname' => 'Martin',
+            'lastname' => 'Groß',
+            'email' => 'martin@gmail.com',
+            'password' => bcrypt('password4'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
+        ]);
+
+        DB::table('users')->insert([
+            'firstname' => 'Sarah',
+            'lastname' => 'Bauer',
+            'email' => 'sarah@gmail.com',
+            'password' => bcrypt('password5'),
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
